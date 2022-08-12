@@ -1,0 +1,27 @@
+spring:
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: admin
+    password: s3cr3t
+  jackson:
+    default-property-inclusion: non_null
+
+  kafka:
+    producer:
+      properties:
+        max:
+          in:
+            flight:
+              requests:
+                per:
+                  connection: 1
+
+outbox:
+  enabled: true
+  subscription-name: postgresql-event-sourcing-app
+  initial-delay-ms: 1000
+  fixed-delay-ms: 1000
